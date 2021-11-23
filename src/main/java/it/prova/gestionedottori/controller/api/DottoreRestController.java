@@ -78,11 +78,23 @@ public class DottoreRestController {
 	
 	@GetMapping("/verifica/{codiceDipendente}")
 	public DottoreDTO verifica(@PathVariable(required = true) String codiceDipendente) {
-		return DottoreDTO.buildDottoreDTOFromModel(dottoreService.findByCodice(codiceDipendente));
+		
+		Dottore dottore = dottoreService.findByCodice(codiceDipendente);
+		
+		if(dottore == null || dottore.getId() == null)
+			throw new DottoreNotFoundException("Dottore non trovato con codice specificato");
+		
+		return DottoreDTO.buildDottoreDTOFromModel(dottore);
 	}
 	
 	@PostMapping("/impostaInVisita")
-	public DottoreDTO impostaInVisita(@RequestBody String codiceDipendente) {
-		return DottoreDTO.buildDottoreDTOFromModel(dottoreService.impostaVisita(codiceDipendente));
+	public DottoreDTO impostaInVisita(@RequestBody Dottore dottoreInput) {
+		
+		Dottore dottore = dottoreService.impostaVisita(dottoreInput.getCodiceDipendente());
+		
+		if(dottore == null || dottore.getId() == null)
+			throw new DottoreNotFoundException("Dottore non trovato con codice specificato");
+		
+		return DottoreDTO.buildDottoreDTOFromModel(dottore);
 	}
 }
