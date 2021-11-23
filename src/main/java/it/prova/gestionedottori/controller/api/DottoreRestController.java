@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.prova.gestionedottori.dto.DottoreDTO;
 import it.prova.gestionedottori.exceptions.DottoreNotFoundException;
 import it.prova.gestionedottori.model.Dottore;
 import it.prova.gestionedottori.service.DottoreService;
@@ -76,12 +77,12 @@ public class DottoreRestController {
 	}
 	
 	@GetMapping("/verifica/{codiceDipendente}")
-	public Dottore verifica(@PathVariable(required = true) String codiceDipendente) {
-		return dottoreService.findByCodice(codiceDipendente);
+	public DottoreDTO verifica(@PathVariable(required = true) String codiceDipendente) {
+		return DottoreDTO.buildDottoreDTOFromModel(dottoreService.findByCodice(codiceDipendente));
 	}
 	
 	@PostMapping("/impostaInVisita")
-	public Dottore impostaInVisita(@RequestBody String codiceDipendente) {
-		return dottoreService.impostaVisita(codiceDipendente);
+	public DottoreDTO impostaInVisita(@RequestBody String codiceDipendente) {
+		return DottoreDTO.buildDottoreDTOFromModel(dottoreService.impostaVisita(codiceDipendente));
 	}
 }
