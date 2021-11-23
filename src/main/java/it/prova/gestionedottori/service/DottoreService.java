@@ -20,5 +20,6 @@ public interface DottoreService {
 	
 	Dottore findByCodice(String codice);
 	
+	Dottore impostaVisita(String codice);
 
 }

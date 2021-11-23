@@ -80,4 +80,8 @@ public class DottoreRestController {
 		return dottoreService.findByCodice(codiceDipendente);
 	}
 	
+	@PostMapping("/impostaInVisita")
+	public Dottore impostaInVisita(@RequestBody String codiceDipendente) {
+		return dottoreService.impostaVisita(codiceDipendente);
+	}
 }
