@@ -22,10 +22,8 @@ import it.prova.gestionedottori.exceptions.DottoreNotFoundException;
 import it.prova.gestionedottori.model.Dottore;
 import it.prova.gestionedottori.service.DottoreService;
 
-
-
 @RestController
-@RequestMapping(value = "/api/dottore", produces = { MediaType.APPLICATION_JSON_VALUE })
+@RequestMapping(value = "/dottore", produces = { MediaType.APPLICATION_JSON_VALUE })
 public class DottoreRestController {
 
 	@Autowired
@@ -75,6 +73,11 @@ public class DottoreRestController {
 	@DeleteMapping("/{id}")
 	public void deleteDottore(@PathVariable(required = true) Long id) {
 		dottoreService.delete(dottoreService.get(id));
+	}
+	
+	@GetMapping("/verifica/{codiceDipendente}")
+	public Dottore verifica(@PathVariable(required = true) String codiceDipendente) {
+		return dottoreService.findByCodice(codiceDipendente);
 	}
 	
 }

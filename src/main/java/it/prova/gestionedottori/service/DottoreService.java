@@ -17,5 +17,8 @@ public interface DottoreService {
 	Dottore save(Dottore input);
 
 	void delete(Dottore input);
+	
+	Dottore findByCodice(String codice);
+	
 
 }
