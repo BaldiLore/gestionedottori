@@ -47,8 +47,15 @@ public class DottoreServiceImpl implements DottoreService {
 			if (!StringUtils.isEmpty(dottoreExample.getCodiceDipendente()))
 				predicates.add(cb.like(cb.upper(root.get("codiceDipendente")), "%" + dottoreExample.getCodiceDipendente().toUpperCase() + "%"));
 
-			predicates.add(cb.equal(root.get("inServizio"), dottoreExample.isInServizio()));
-			predicates.add(cb.equal(root.get("inVisita"), dottoreExample.isInVisita()));
+			if (dottoreExample.isInServizio())
+				predicates.add(cb.isTrue(root.get("inServizio")));
+			else
+				predicates.add(cb.isFalse(root.get("inServizio")));
+			
+			if (dottoreExample.isInVisita())
+				predicates.add(cb.isTrue(root.get("inVisita")));
+			else
+				predicates.add(cb.isFalse(root.get("inVisita")));
 			
 			return cb.and(predicates.toArray(new Predicate[predicates.size()]));
 		};
