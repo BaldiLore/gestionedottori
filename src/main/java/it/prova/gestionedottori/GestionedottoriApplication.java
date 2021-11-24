@@ -22,9 +22,9 @@ public class GestionedottoriApplication {
 			// inizializzo il Db
 			dottoreService.save(new Dottore("Paolo", "Brosio", "PB53628", false, false));
 			dottoreService.save(new Dottore("Nicola", "Golia", "NG93925", true, false));
-			dottoreService.save(new Dottore("Ajeje", "Brazorf", "AB67293", true, false));
+			dottoreService.save(new Dottore("Ajeje", "Brazorf", "AB67293", false, false));
 			dottoreService.save(new Dottore("Mario", "Rossi", "MR64873", false, false));
-			dottoreService.save(new Dottore("Maria", "Bianchi", "MB67721", true, true));
+			dottoreService.save(new Dottore("Maria", "Bianchi", "MB67721", false, false));
 
 			// verifico inserimento
 			System.out.println("Elenco Dottori");

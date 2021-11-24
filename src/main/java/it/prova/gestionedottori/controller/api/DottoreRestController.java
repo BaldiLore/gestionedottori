@@ -69,8 +69,6 @@ public class DottoreRestController {
 		dottoreToUpdate.setCodiceDipendente(dottoreInput.getCodiceDipendente());
 		dottoreToUpdate.setNome(dottoreInput.getNome());
 		dottoreToUpdate.setCognome(dottoreInput.getCognome());
-		dottoreToUpdate.setInServizio(dottoreInput.isInServizio());
-		dottoreToUpdate.setInVisita(dottoreInput.isInVisita());
 		return dottoreService.save(dottoreToUpdate);
 	}
 
@@ -92,7 +90,8 @@ public class DottoreRestController {
 	}
 	
 	@PostMapping("/impostaInVisita")
-	public DottoreDTO impostaInVisita(@RequestBody Dottore dottoreInput) {
+	@ResponseStatus(HttpStatus.OK)
+	public DottoreDTO impostaInVisita(@RequestBody DottoreDTO dottoreInput) {
 		
 		Dottore dottore = dottoreService.impostaVisita(dottoreInput.getCodiceDipendente());
 		
